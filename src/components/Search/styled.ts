@@ -15,6 +15,7 @@ export const SearchElement = styled.div`
 `;
 export const SearchInput = styled.input`
   flex: 1;
+  width:0;
   margin-left: 1rem;
   height: 3.25rem;
   border: none;

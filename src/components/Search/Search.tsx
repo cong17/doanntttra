@@ -40,7 +40,7 @@ const Search: React.FC = () => {
   return (
     <SearchElement>
       <SearchIcon />
-      <DebounceInput element={SearchInput} debounceTimeout={300} onChange={onSearchInputChanged} placeholder="Search for location" />
+      <DebounceInput element={SearchInput} debounceTimeout={300} onChange={onSearchInputChanged} placeholder="Tìm kiếm ..." />
       <LocationButton
         onClick={() => {
           if (navigator.geolocation) {
