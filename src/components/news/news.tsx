@@ -19,11 +19,11 @@ const PageNews: React.FC = () => {
 
             <PageContainer>
                 {news.map((item, i) => {
-                    console.log(item)
+
                     return (
                         <NewsItem
                             key={i}
-                            Title={item.contentbaiviet}
+                            Title={item.titlebaiviet}
                             time={item.timebaiviet}
                             content={item.contentbaiviet}
                             urlimg={item.imgbaiviet}
