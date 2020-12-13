@@ -1,5 +1,5 @@
 import { IExtendedForecastData, IWeatherData } from '../../api/types';
-import { fetchExtendedForecastData, fetchWeatherData } from '../../api/weather';
+import { fetchExtendedForecastData, fetchWeatherData, fetchExtendedCovidData, fetchExtendedCacBaibaoData } from '../../api/weather';
 import { kelvinToCelcius } from '../../utils/unitConversion';
 import { getNextSevenDays } from '../../utils/dateUtils';
 import { WeatherActionTypes } from '../actionTypes';
@@ -9,9 +9,9 @@ export const fetchWeatherStart = () => ({
   type: WeatherActionTypes.FETCH_WEATHER_START,
 });
 
-export const fetchWeatherSuccess = (weather: IWeatherData, forecast: IExtendedForecastData[]) => ({
+export const fetchWeatherSuccess = (weather: IWeatherData, forecast: IExtendedForecastData[], covidData: any, cacbaibao: any) => ({
   type: WeatherActionTypes.FETCH_WEATHER_SUCCESS,
-  payload: { weather, forecast },
+  payload: { weather, forecast, covidData, cacbaibao },
 });
 
 export const fetchWeatherFail = (error: any) => ({
@@ -24,14 +24,16 @@ export const fetchWeatherFromApi = (city: string | { lat: number; lng: number })
     dispatch(setIsLoading(true));
     dispatch(fetchWeatherStart());
 
-    Promise.all([fetchWeatherData(city), fetchExtendedForecastData(city)])
+    Promise.all([fetchWeatherData(city), fetchExtendedForecastData(city), fetchExtendedCovidData(city), fetchExtendedCacBaibaoData(city)])
       .then((res) => {
-        return Promise.all([res[0].json(), res[1].json()]);
+        return Promise.all([res[0].json(), res[1].json(), res[2].json(), res[3].json()]);
       })
       .then((res) => {
         console.log(res);
         const { forecast, weather } = transformWeatherData(res);
-        dispatch(fetchWeatherSuccess(weather, forecast));
+        const covidData = res[2];
+        const cacbaibao = res[3];
+        dispatch(fetchWeatherSuccess(weather, forecast, covidData, cacbaibao));
         dispatch(setIsInitialState(false));
         dispatch(setIsLoading(false));
       })
@@ -50,6 +52,7 @@ const transformWeatherData = (
 } => {
   const weather = res[0] as IWeatherData;
   const forecast: IExtendedForecastData[] = [];
+
 
   weather.weather = res[0].weather[0];
   weather.main = {
@@ -79,6 +82,6 @@ const transformWeatherData = (
 
   return {
     weather,
-    forecast,
+    forecast
   };
 };

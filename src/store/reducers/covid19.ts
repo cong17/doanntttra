@@ -1,13 +1,13 @@
 import { IExtendedForecastData, IWeatherData } from '../../api/types';
 import { WeatherActionTypes } from '../actionTypes';
 
-export interface IWeatherState {
+export interface CovidState {
     weatherData: IWeatherData;
     extendedWeatherData: IExtendedForecastData[];
     isError: boolean;
 }
 
-const initialState: IWeatherState = {
+const initialState: CovidState = {
     weatherData: {
         main: {
             feels_like: 0,
@@ -38,7 +38,7 @@ const initialState: IWeatherState = {
     isError: false,
 };
 
-export const weatherReducer = (state: IWeatherState = initialState, action: { type: WeatherActionTypes; payload: any }) => {
+export const covidReducer = (state: CovidState = initialState, action: { type: WeatherActionTypes; payload: any }) => {
     switch (action.type) {
         case WeatherActionTypes.FETCH_WEATHER_START:
             return state;

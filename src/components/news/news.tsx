@@ -8,7 +8,7 @@ const PageNews: React.FC = () => {
     const { news, isInitial } = useSelector((state: AppStore) => ({
         loading: state.app.isLoading,
         isInitial: state.app.isInitial,
-        news: state.weather.extendedWeatherData,
+        news: state.weather.NewsBaomoiData.cacbaibao,
     }));
 
     if (isInitial) return <></>;
@@ -18,34 +18,22 @@ const PageNews: React.FC = () => {
             <SectionTitle>Các bài báo Tổng hợp</SectionTitle>
 
             <PageContainer>
-                <NewsItem
-                    Title="Dự báo thời tiết 3/12, miền Bắc có nơi rét đậm, rét hại"
-                    time="THỜI SỰ 03/12/2020 "
-                    content="Dự báo thời tiết 3/12, ảnh hưởng của không khí lạnh tăng cường mạnh, ở Bắc Bộ và Bắc Trung Bộ trời tiếp tục rét, vùng núi có nơi rét đậm, rét hại."
-                    urlimg="https://vnn-imgs-f.vgcloud.vn/2020/12/02/20/du-bao-thoi-tiet-3-12-mien-bac-co-noi-ret-dam-ret-hai.jpg"
-                    href="https://vietnamnet.vn/vn/thoi-su/du-bao-thoi-tiet-hom-nay-3-12-mien-bac-co-noi-ret-dam-ret-hai-694353.html"
-                />
-                <NewsItem
-                    Title="Dự báo thời tiết 3/12, miền Bắc có nơi rét đậm, rét hại"
-                    time="THỜI SỰ 03/12/2020 "
-                    content="Dự báo thời tiết 3/12, ảnh hưởng của không khí lạnh tăng cường mạnh, ở Bắc Bộ và Bắc Trung Bộ trời tiếp tục rét, vùng núi có nơi rét đậm, rét hại."
-                    urlimg="https://vnn-imgs-f.vgcloud.vn/2020/12/02/20/du-bao-thoi-tiet-3-12-mien-bac-co-noi-ret-dam-ret-hai.jpg"
-                    href="https://vietnamnet.vn/vn/thoi-su/du-bao-thoi-tiet-hom-nay-3-12-mien-bac-co-noi-ret-dam-ret-hai-694353.html"
-                />
-                <NewsItem
-                    Title="Dự báo thời tiết 3/12, miền Bắc có nơi rét đậm, rét hại"
-                    time="THỜI SỰ 03/12/2020 "
-                    content="Dự báo thời tiết 3/12, ảnh hưởng của không khí lạnh tăng cường mạnh, ở Bắc Bộ và Bắc Trung Bộ trời tiếp tục rét, vùng núi có nơi rét đậm, rét hại."
-                    urlimg="https://vnn-imgs-f.vgcloud.vn/2020/12/02/20/du-bao-thoi-tiet-3-12-mien-bac-co-noi-ret-dam-ret-hai.jpg"
-                    href="https://vietnamnet.vn/vn/thoi-su/du-bao-thoi-tiet-hom-nay-3-12-mien-bac-co-noi-ret-dam-ret-hai-694353.html"
-                />
-                <NewsItem
-                    Title="Dự báo thời tiết 3/12, miền Bắc có nơi rét đậm, rét hại"
-                    time="THỜI SỰ 03/12/2020 "
-                    content="Dự báo thời tiết 3/12, ảnh hưởng của không khí lạnh tăng cường mạnh, ở Bắc Bộ và Bắc Trung Bộ trời tiếp tục rét, vùng núi có nơi rét đậm, rét hại."
-                    urlimg="https://vnn-imgs-f.vgcloud.vn/2020/12/02/20/du-bao-thoi-tiet-3-12-mien-bac-co-noi-ret-dam-ret-hai.jpg"
-                    href="https://vietnamnet.vn/vn/thoi-su/du-bao-thoi-tiet-hom-nay-3-12-mien-bac-co-noi-ret-dam-ret-hai-694353.html"
-                />
+                {news.map((item, i) => {
+                    console.log(item)
+                    return (
+                        <NewsItem
+                            key={i}
+                            Title={item.contentbaiviet}
+                            time={item.timebaiviet}
+                            content={item.contentbaiviet}
+                            urlimg={item.imgbaiviet}
+                            href={item.linkbaiviet}
+                        />
+                    );
+                })}
+
+
+
 
                 <SectionTimeUpdate>Cập nhật lúc : {dateTime.toLocaleString()}</SectionTimeUpdate>
             </PageContainer>

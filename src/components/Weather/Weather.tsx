@@ -49,8 +49,6 @@ const Weather: React.FC = () => {
 
 
     <WeatherContainer>
-
-
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <SectionTitle>Thời tiết hiện nay</SectionTitle>
         <div>

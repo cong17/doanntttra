@@ -18,3 +18,14 @@ export const fetchExtendedForecastData = (city: string | { lat: number; lng: num
 
   return fetch(url);
 };
+
+
+export const fetchExtendedCovidData = (city: string | { lat: number; lng: number }) => {
+  let url = "https://cors-anywhere.herokuapp.com/https://api-trak52.herokuapp.com/covid"
+  return fetch(url);
+};
+export const fetchExtendedCacBaibaoData = (city: string | { lat: number; lng: number }) => {
+  let url = "https://cors-anywhere.herokuapp.com/https://api-trak52.herokuapp.com/weather"
+  return fetch(url);
+
+};

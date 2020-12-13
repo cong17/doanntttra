@@ -1,17 +1,17 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { appReducer, IAppState } from './reducers/appReducer';
-import { IWeatherState, weatherReducer } from './reducers/weatherReducer';
+import { IWeatherState, weatherReducer, } from './reducers/weatherReducer';
 
 const rootReducer = combineReducers({
   app: appReducer,
-  weather: weatherReducer,
+  weather: weatherReducer
 });
 
 export type AppStore = {
   app: IAppState;
   weather: IWeatherState;
-  covid: IAppState;
+
 
 };
 

@@ -8,35 +8,38 @@ const Covid19: React.FC = () => {
     const { Covid19, isInitial } = useSelector((state: AppStore) => ({
         loading: state.app.isLoading,
         isInitial: state.app.isInitial,
-        Covid19: state.weather.extendedWeatherData,
+        Covid19: state.weather.covidData,
     }));
 
+
+
     if (isInitial) return <></>;
-    let dateTime = new Date()
+
     return (
         <Covid19Container>
             <SectionTitle>Thống kê tình hình covid</SectionTitle>
             <Covid19Items>
                 <div style={{}}>
+
                     <Covid19Item
                         key={1}
-                        location="Việt Nam"
-                        newc={456}
-                        pedding={489}
-                        ok={10}
-                        die={12}
+                        location={Covid19.VN.TitleVN}
+                        newc={Covid19.VN.SoCaNhiemVN}
+                        pedding={Covid19.VN.DangDieuTriVN}
+                        ok={Covid19.VN.KhoiVN}
+                        die={Covid19.VN.TuVongVN}
                     />
                     <Covid19Item
                         key={2}
-                        location="Thế giới"
-                        newc={456}
-                        pedding={489}
-                        ok={10}
-                        die={12}
+                        location={Covid19.World.TitleWorld}
+                        newc={Covid19.World.SoCaNhiemWorld}
+                        pedding={Covid19.World.DangDieuTriWorld}
+                        ok={Covid19.World.KhoiWorld}
+                        die={Covid19.World.TuVongWorld}
                     />
                 </div>
             </Covid19Items>
-            <SectionTimeUpdate>Cập nhật lúc : {dateTime.toLocaleString()}</SectionTimeUpdate>
+            <SectionTimeUpdate>Cập nhật lúc : {Covid19.TimeUpdate}</SectionTimeUpdate>
         </Covid19Container>
     );
 };

@@ -4,6 +4,8 @@ import { WeatherActionTypes } from '../actionTypes';
 export interface IWeatherState {
   weatherData: IWeatherData;
   extendedWeatherData: IExtendedForecastData[];
+  covidData: any;
+  NewsBaomoiData: any,
   isError: boolean;
 }
 
@@ -35,6 +37,35 @@ const initialState: IWeatherState = {
     },
   },
   extendedWeatherData: [],
+  covidData: {
+    "VN": {
+      "TitleVN": "Việt Nam",
+      "SoCaNhiemVN": "Số ca nhiễm 0",
+      "DangDieuTriVN": "Đang điều trị 0",
+      "KhoiVN": "Khỏi 0",
+      "TuVongVN": "Tử vong 0"
+    },
+    "World": {
+      "TitleWorld": "Thế giới",
+      "SoCaNhiemWorld": "Tổng ca nhiễm 0",
+      "DangDieuTriWorld": "Đang nhiễm 0",
+      "KhoiWorld": "Khỏi 0",
+      "TuVongWorld": "Tử vong 0"
+    },
+    "TimeUpdate": "Không thể lấy dữ liệu"
+  },
+  NewsBaomoiData: {
+    chisokhongkhi: [{
+      diadiem: "mac dinh",
+      chiso: 0
+    }],
+    cacbaibao: [{
+      linkbaiviet: "",
+      imgbaiviet: "",
+      contentbaiviet: "",
+      timebaiviet: ""
+    }]
+  },
   isError: false,
 };
 
@@ -47,6 +78,8 @@ export const weatherReducer = (state: IWeatherState = initialState, action: { ty
         ...state,
         weatherData: action.payload.weather,
         extendedWeatherData: action.payload.forecast,
+        covidData: action.payload.covidData,
+        NewsBaomoiData: action.payload.cacbaibao
       };
     case WeatherActionTypes.FETCH_WEATHER_ERROR:
       return {
