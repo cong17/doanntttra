@@ -23,11 +23,11 @@ export const fetchExtendedForecastData = (city: string | { lat: number; lng: num
 
 
 export const fetchExtendedCovidData = (city: string | { lat: number; lng: number }) => {
-  let url = "https://api-trak52.herokuapp.com/covid"
-  return fetch(url);
+  let url = "https://cors-anywhere.herokuapp.com/https://api-trak52.herokuapp.com/covid"
+  return fetch(url, { method: 'GET' });
 };
 export const fetchExtendedCacBaibaoData = (city: string | { lat: number; lng: number }) => {
-  let url = "https://api-trak52.herokuapp.com/weather"
-  return fetch(url);
+  let url = "https://cors-anywhere.herokuapp.com/https://api-trak52.herokuapp.com/weather"
+  return fetch(url, { method: 'GET' });
 
 };
